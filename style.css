@@ -43,7 +43,7 @@ h1 {
 
 .letter {
   display: none;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   padding: 30px;
   width: 80%;
@@ -55,21 +55,22 @@ h1 {
   animation: fadeIn 2s forwards;
 }
 
+/* Make message block-level, hidden overflow (typing reveals width), and ensure wrapping */
 .message {
-  display: inline-block;
+  display: block;
   text-align: left;
-  white-space: pre-wrap;
-  border-right: 3px solid #b30059;
-  overflow: hidden;
+  white-space: pre-wrap;        /* keep line breaks in your text */
+  overflow: hidden;            /* hide overflowing text during typing */
   font-size: 1.1rem;
-  width: 0;
+  width: 0;                    /* will grow during typing animation */
+  border-right: 3px solid #b30059;
+  box-sizing: border-box;
+  /* help long words wrap on small screens */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
+/* blinking caret (will be used by JS via animation name 'blink') */
 @keyframes blink {
   from, to { border-color: transparent; }
   50% { border-color: #b30059; }
